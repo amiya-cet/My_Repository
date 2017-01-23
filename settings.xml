@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="4a0d47c9-79dd-4112-b85d-e3b8fcfc14e3" activeEnvironment="Default environment" name="CAR Projects" lastOpened="2017-01-18T01:50:27.598-05:00" resourceRoot="${projectDir}" soapui-version="6.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.ProTestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Report Format(s)" value=""/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="Export JUnit Results" value="false"/>
+  <con:entry key="Export All" value="false"/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="TestSuite" value="http://mavdv-mservice-01.curaspan.local:8080 TestSuite"/>
+  <con:entry key="Endpoint" value=""/>
+  <con:entry key="Select Report Type" value="Data Export"/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Run in-process" value="false"/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="Print Report" value="false"/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="Test Case Tags" value=""/>
+  <con:entry key="Export JUnit Results with test properties" value="false"/>
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="TestCase" value="CAR-613"/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="user-settings.xml Password" value=""/>
+  <con:entry key="TestRunner Path" value=""/>
+  <con:entry key="Environment" value="Default environment"/>
+  <con:entry key="Coverage Report" value="false"/>
+  <con:entry key="Enable UI" value="false"/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Ignore Errors" value="false"/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Save Project" value="true"/>
+</xml-fragment>]]></con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:requirements/><con:properties><con:property><con:name>internal</con:name></con:property><con:property><con:name>Tag_Name</con:name><con:value>TAG_1101</con:value></con:property><con:property><con:name>Org_ID</con:name><con:value>125905</con:value></con:property></con:properties><con:wssContainer/><con:databaseConnectionContainer><con:databaseConnection><con:name>Oracle SQL Dev</con:name><con:driver>oracle.jdbc.driver.OracleDriver</con:driver><con:connectionString>jdbc:oracle:thin:transition/PASS_VALUE@db-aimdev.curaspan.local:1521:AIMDEV</con:connectionString><con:password>monthrow</con:password></con:databaseConnection></con:databaseConnectionContainer><con:oAuth2ProfileContainer/><con:environment id="76a19c01-2f12-425f-8b57-970f334812d2" name="Test"><con:service type="REST" name="http://mavdv-mservice-01.curaspan.local:8080"><con:endpoint authProfile="No Authorization">http://mavdv-mservice-01.curaspan.local:8080</con:endpoint></con:service><con:service type="REST" name="REST Service 1"><con:endpoint authProfile="Inherit From Parent"/></con:service><con:property><con:name>internal</con:name><con:value/></con:property><con:property><con:name>Tag_Name</con:name><con:value/></con:property><con:property><con:name>Org_ID</con:name><con:value/></con:property><con:databaseConnectionContainer><con:databaseConnection><con:name>Oracle SQL Dev</con:name><con:driver>oracle.jdbc.driver.OracleDriver</con:driver><con:connectionString>jdbc:oracle:thin:transition/PASS_VALUE@db-aimdev.curaspan.local:1521:AIMDEV</con:connectionString><con:password>monthrow</con:password></con:databaseConnection></con:databaseConnectionContainer></con:environment><con:authRepository/><con:environmentSpec><con:entry environmentId="a7e74879-1ec2-4130-b475-5be136561105"><con:authProfile>No Authorization</con:authProfile></con:entry><con:entry environmentId="76a19c01-2f12-425f-8b57-970f334812d2"><con:authProfile>No Authorization</con:authProfile></con:entry></con:environmentSpec><con:tags/></con:soapui-project>
