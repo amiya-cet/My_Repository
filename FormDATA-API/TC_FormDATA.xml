@@ -3,4 +3,55 @@
   <con:entry key="orderBy" value="${FormData_DS#orderBy}"/>
   <con:entry key="fields" value="${FormData_DS#fields}"/>
   <con:entry key="status" value="${FormData_DS#status}"/>
-</con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="datasourceloop" name="DataSource Loop" id="b97a6482-6076-4a7b-85ae-dc34f6b759c9"><con:settings/><con:config><dataSourceStep>FormData_DS</dataSourceStep><targetStep>GET_FormDataService</targetStep></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>1d16a11c-9448-42f2-9cdf-47bc4cb07d20</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase>
+</con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="datasourceloop" name="DataSource Loop" id="b97a6482-6076-4a7b-85ae-dc34f6b759c9"><con:settings/><con:config><dataSourceStep>FormData_DS</dataSourceStep><targetStep>GET_FormDataService</targetStep></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script" id="77c3c9c7-ed80-4d82-90d0-f8266d64bd0e"><con:settings/><con:config><script>import com.gmongo.GMongoClient
+import com.mongodb.MongoClient
+import com.gmongo.GMongo
+import com.mongodb.MongoCredential
+import com.mongodb.ServerAddress
+import groovy.json.JsonSlurper
+/*def dbUser = 'fduser'
+def dbPassword = 'password1'
+def dbServer = 'db-mongodev.curaspan.local'
+def dbDatabase = 'forms'
+*/
+/*def dbUser = testRunner.testCase.testSuite.project.getPropertyValue("User")
+def dbPassword = testRunner.testCase.testSuite.project.getPropertyValue("Password")
+def dbServer = testRunner.testCase.testSuite.project.getPropertyValue("Server")
+
+def dbDatabase = testRunner.testCase.testSuite.project.getPropertyValue("Database")
+*/
+def dbUser = context.expand( '${#Project#User}' )
+def dbPassword = context.expand( '${#Project#Password}' )
+def dbServer = context.expand( '${#Project#Server}' )
+def dbDatabase = context.expand( '${#Project#Database}' )
+//log.info(fixed)
+//def dbDatabase = fixed("Database")
+//Connection to Mongo DB 
+def credentials = MongoCredential.createCredential(dbUser, dbDatabase, dbPassword as char[])
+
+def mongoClient =  new MongoClient( new ServerAddress(dbServer), Arrays.asList(credentials) )
+context.gmongo = new GMongo( mongoClient )
+context.mongoDB = context.gmongo.getDB(dbDatabase)
+log.info("Successfull")
+
+
+
+def dbMongo = context.mongoDB.form.find([_id:[$exists:true]]).toArray()
+log.info dbMongo[0]
+def response = context.expand( '${GettingDataFromAPI#Response#$[\'id\']}' )
+//def response = context.expand( '${GettingDataFromAPI#Response#$[\'id\']}' )
+
+assert dbMongo[0]._id == response
+log.info "Assertions Successfull"
+assert dbMongo[0].name == "Patient Information Form"
+//assert dbMongo[0].active == true
+def response1 = context.expand( '${GettingDataFromAPI#Response#$[\'uri\']}' )
+assert dbMongo[0].uri == response1
+def response2 = context.expand( '${GettingDataFromAPI#Response#$[\'page\']}' )
+log.info response2
+//assert dbMongo[0].page ==  response2:"Failedyes"
+//assert dbMongo[0].formFieldMap == 'normal_list'
+log.info "Assertions Successfull"
+//def id = context.expand( '${GettingDataFromAPI#id}' )
+
+</script></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>1d16a11c-9448-42f2-9cdf-47bc4cb07d20</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase>
