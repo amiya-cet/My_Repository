@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="a4f20059-c317-45f3-b3ae-cdd2b3d404c9" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TC_FormAggregation" searchProperties="true" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="a4f20059-c317-45f3-b3ae-cdd2b3d404c9fileName">TC_FormAggregation</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:properties/><con:reportParameters/></con:testCase>
