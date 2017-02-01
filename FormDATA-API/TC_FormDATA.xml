@@ -1,13 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:testCase id="465970da-1783-4cf2-92df-17245a2fcac3" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TC_FormDATA" searchProperties="true" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="465970da-1783-4cf2-92df-17245a2fcac3fileName">TC_FormDATA</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="datasource" name="FormData_DS" id="1d16a11c-9448-42f2-9cdf-47bc4cb07d20"><con:settings/><con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:dataSource type="Grid"><con:configuration><check><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry></xml-fragment>]]></check><row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">id,name,active,uri,page</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">asc</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">active</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row><row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">id,name,active,uri</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">asc</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">active</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row></con:configuration></con:dataSource><con:property>fields</con:property><con:property>orderBy</con:property><con:property>status</con:property><con:completeLastOperation>true</con:completeLastOperation><con:restartOnRun>true</con:restartOnRun></con:config></con:testStep><con:testStep type="restrequest" name="GET_FormDataService" id="6cc4b841-c763-4803-89bc-655a833801d0"><con:settings/><con:config service="REST Service 2" resourcePath="/formdataservice/services/v1/form" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="GET_FormDataService" id="d420fb2f-b5bf-481b-9f19-492663c71cff" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://mavdv-ccpts-03.curaspan.local</con:endpoint><con:request/><con:originalUri>http://mavdv-ccpts-03.curaspan.local/formdataservice/services/v1/form</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="79be3695-7222-412d-83df-e5f7b4cbcc4a" name="Valid HTTP Status Codes"><con:settings/><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
-  <con:entry key="orderBy" value="${FormData_DS#orderBy}"/>
-  <con:entry key="fields" value="${FormData_DS#fields}"/>
-  <con:entry key="status" value="${FormData_DS#status}"/>
-</con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="datasourceloop" name="DataSource Loop" id="b97a6482-6076-4a7b-85ae-dc34f6b759c9"><con:settings/><con:config><dataSourceStep>FormData_DS</dataSourceStep><targetStep>GET_FormDataService</targetStep></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script" id="77c3c9c7-ed80-4d82-90d0-f8266d64bd0e"><con:settings/><con:config><script>import com.gmongo.GMongoClient
+<con:testCase id="465970da-1783-4cf2-92df-17245a2fcac3" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TC_FormDATA" searchProperties="true" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="465970da-1783-4cf2-92df-17245a2fcac3fileName">TC_FormDATA</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="datasource" name="FormData_DS" id="1d16a11c-9448-42f2-9cdf-47bc4cb07d20"><con:settings/><con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:dataSource type="Grid"><con:configuration><check><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry></xml-fragment>]]></check><row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">id,name,active,uri,page</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">asc</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">active</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row><row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">id,name,active,uri</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">asc</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">active</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row></con:configuration></con:dataSource><con:property>fields</con:property><con:property>orderBy</con:property><con:property>status</con:property><con:completeLastOperation>true</con:completeLastOperation><con:restartOnRun>true</con:restartOnRun></con:config></con:testStep><con:testStep type="restrequest" name="GET_FormDataService" id="6cc4b841-c763-4803-89bc-655a833801d0"><con:settings/><con:config service="REST Service 2" resourcePath="/formdataservice/services/v1/form" methodName="GET" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="GET_FormDataService" id="d420fb2f-b5bf-481b-9f19-492663c71cff" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://mavdv-ccpts-03.curaspan.local</con:endpoint><con:request/><con:originalUri>http://mavdv-ccpts-03.curaspan.local/formdataservice/services/v1/form</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="79be3695-7222-412d-83df-e5f7b4cbcc4a" name="Valid HTTP Status Codes"><con:settings/><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="XPath Match" id="e49891ee-dd83-440d-94cd-fae1687bb85c" name="XPath Match"><con:configuration/></con:assertion><con:assertion type="GroovyScriptAssertion" id="e3f3c0fd-543e-47e9-82e8-39d9a7e694b0" name="Script Assertion"><con:configuration><scriptText>import com.gmongo.GMongoClient
 import com.mongodb.MongoClient
 import com.gmongo.GMongo
 import com.mongodb.MongoCredential
 import com.mongodb.ServerAddress
+import groovy.json.JsonSlurper
+import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.model.iface.*
+import groovy.json.JsonSlurper
+
+def dbUser = context.expand( '${#Project#User}' )
+def dbPassword = context.expand( '${#Project#Password}' )
+def dbServer = context.expand( '${#Project#Server}' )
+def dbDatabase = context.expand( '${#Project#Database}' )
+
+def credentials = MongoCredential.createCredential(dbUser, dbDatabase, dbPassword as char[])
+
+def mongoClient =  new MongoClient( new ServerAddress(dbServer), Arrays.asList(credentials) )
+context.gmongo = new GMongo( mongoClient )
+context.mongoDB = context.gmongo.getDB(dbDatabase)
+log.info("Connection Successfull")
+
+def dbMongo_id = context.mongoDB.form.find([_id:[$exists:true]]).toArray()
+def id_count = dbMongo_id.size()
+def response = context.expand( '${GET_FormDataService#Response}' ).toString()
+
+
+def json = new JsonSlurper().parseText(response)
+
+for(int i=0;i&lt;5;i++){
+	assert dbMongo_id[i]._id == json[i].id	
+}
+
+log.info("Assertion successful")
+
+
+
+
+</scriptText></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters>
+  <con:entry key="orderBy" value="${FormData_DS#orderBy}"/>
+  <con:entry key="fields" value="${FormData_DS#fields}"/>
+  <con:entry key="status" value="${FormData_DS#status}"/>
+</con:parameters></con:restRequest></con:config></con:testStep><con:testStep type="datasourceloop" name="DataSource Loop" id="b97a6482-6076-4a7b-85ae-dc34f6b759c9"><con:settings/><con:config><dataSourceStep>FormData_DS</dataSourceStep><targetStep>GET_FormDataService</targetStep></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script" id="77c3c9c7-ed80-4d82-90d0-f8266d64bd0e" disabled="true"><con:settings/><con:config><script>import com.gmongo.GMongoClient
+import com.mongodb.MongoClient
+import com.gmongo.GMongo
+import com.mongodb.MongoCredential
+import com.mongodb.ServerAddress
+import groovy.json.JsonSlurper
+import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.model.iface.*
 import groovy.json.JsonSlurper
 /*def dbUser = 'fduser'
 def dbPassword = 'password1'
@@ -34,24 +75,51 @@ context.gmongo = new GMongo( mongoClient )
 context.mongoDB = context.gmongo.getDB(dbDatabase)
 log.info("Successfull")
 
-
-
 def dbMongo = context.mongoDB.form.find([_id:[$exists:true]]).toArray()
-log.info dbMongo[0]
-def response = context.expand( '${GettingDataFromAPI#Response#$[\'id\']}' )
-//def response = context.expand( '${GettingDataFromAPI#Response#$[\'id\']}' )
+log.info dbMongo[0]._id
+def response = context.expand( '${GET_FormDataService#Response}' )
 
-assert dbMongo[0]._id == response
+log.info response
+
+def refNum = response.getNodeValue('//Response[0]/e[0]/id[0]')
+log.info(refNum)
+//assert dbMongo[0]._id == response
+//def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+//def holder = groovyUtils.getXmlHolder(response)
+//log.info holder.getXml()
 log.info "Assertions Successfull"
+
+//def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+
+//def resp = messageExchange.responseContentAsXml.toString()
+
+//to store the response as Xml string
+//
+
+ // will display /Log the response in Xml
+//count  = holder.getNodeValue(“count(//Response/e)”)
+
+
+	
+//def responseHolder = groovyUtils.getXmlHolder('${GET_FormDataService#Response}')   //getXmlHolder('GET_FormDataService#Response')
+//def refNum = responseHolder.getNodeValue('//Response[0]/e[0]/id[0]')
+
+//def response2 = context.expand('${GET_FormDataService#Response}')
+//def holder = groovyUtils.getXmlHolder("GET_FormDataService#Response")
+
+//log.info holder
+
+
+/*
 assert dbMongo[0].name == "Patient Information Form"
 //assert dbMongo[0].active == true
-def response1 = context.expand( '${GettingDataFromAPI#Response#$[\'uri\']}' )
+def response1 = context.expand( '${GET_FormDataService#Response#$[\'uri\']}' )
 assert dbMongo[0].uri == response1
-def response2 = context.expand( '${GettingDataFromAPI#Response#$[\'page\']}' )
+def response2 = context.expand( '${GET_FormDataService#Response#$[\'page\']}' )
 log.info response2
 //assert dbMongo[0].page ==  response2:"Failedyes"
 //assert dbMongo[0].formFieldMap == 'normal_list'
 log.info "Assertions Successfull"
 //def id = context.expand( '${GettingDataFromAPI#id}' )
-
+*/
 </script></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>1d16a11c-9448-42f2-9cdf-47bc4cb07d20</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase>
