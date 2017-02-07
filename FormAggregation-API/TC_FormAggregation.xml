@@ -1,2 +1,175 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:testCase id="a4f20059-c317-45f3-b3ae-cdd2b3d404c9" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TC_FormAggregation_EpKey" searchProperties="true" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="a4f20059-c317-45f3-b3ae-cdd2b3d404c9fileName">TC_FormAggregation</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="datasource" name="Form_Agg_DS" id="703e15e4-6a70-405b-a327-7b7f3c60448c"><con:settings/><con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:dataSource type="Grid"><con:configuration><check>&lt;con:entry xmlns:con="http://eviware.com/soapui/config">true&lt;/con:entry></check><row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">450</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">125903_57a6b5fefc1cf812d7dad615</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row></con:configuration></con:dataSource><con:property>Form ID</con:property><con:property>Episode_Key</con:property><con:completeLastOperation>true</con:completeLastOperation><con:restartOnRun>true</con:restartOnRun></con:config></con:testStep><con:testStep type="restrequest" name="TC_GET-FormAggregation_EpKey" id="18f661d6-1348-4e54-9623-baf3c0ee8062"><con:settings/><con:config service="http://mavdv-ccpts-03.curaspan.local" resourcePath="/formaggregationservice/services/sample/form/${Form_Agg_DS_pdf#Form ID}/episode/${Form_Agg_DS_pdf#Episode_Key}" methodName="GET-FormAggregation_EpKey" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="TC_GET-FormAggregation_EpKey" id="936b4c94-951e-4d94-bbc4-56db0ff80672" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting><con:setting id="com.eviware.soapui.impl.support.AbstractHttpRequest@dump-file">C:/Users/Amiya.acharya/Documents/API response/FormAgg_Response/API_response.txt</con:setting><con:setting id="com.eviware.soapui.impl.support.AbstractHttpRequest@max-size">10000</con:setting></con:settings><con:endpoint>http://mavdv-ccpts-03.curaspan.local</con:endpoint><con:request/><con:originalUri>http://mavdv-ccpts-03.curaspan.local/formaggregationservice/services/</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="dc82af97-b8c8-47c4-8b83-07dfee0283a0" name="Valid HTTP Status Codes"><con:settings/><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" id="786f1f86-9c3c-4248-8078-9f723210f219" name="Contains"><con:configuration><token>${Form_Agg_DS#Form ID}</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="268d383f-4ebf-4997-933e-1bba02795963" name="JsonPath Match"><con:configuration><path>$.id</path><content>${Form_Agg_DS#Form ID}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="346a71e6-fec1-4b11-aa3e-926126cb9977" name="JsonPath Match 2"><con:configuration><path>$.values.id</path><content>${Form_Agg_DS#Episode_Key}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/><con:parameterOrder/></con:restRequest></con:config></con:testStep><con:testStep type="datasourceloop" name="DataSource Loop" id="c2df2f60-1b2d-45fa-94a0-1e4793878114"><con:settings/><con:config><dataSourceStep>Form_Agg_DS</dataSourceStep><targetStep>TC_GET-FormAggregation_EpKey</targetStep></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>703e15e4-6a70-405b-a327-7b7f3c60448c</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase>
+<con:testCase id="a4f20059-c317-45f3-b3ae-cdd2b3d404c9" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TC_FormAggregation_EpKey" searchProperties="true" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="a4f20059-c317-45f3-b3ae-cdd2b3d404c9fileName">TC_FormAggregation</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="datasource" name="Form_Agg_DS" id="703e15e4-6a70-405b-a327-7b7f3c60448c"><con:settings/><con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:dataSource type="Grid"><con:configuration><check><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry></xml-fragment>]]></check><row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">450</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">125917_573a7db4fc1ca2f27967170a</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">125917</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row><row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">450</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">125903_57a6b5fefc1cf812d7dad615</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">125903</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row></con:configuration></con:dataSource><con:property>Form ID</con:property><con:property>Episode_Key</con:property><con:property>OrgID</con:property><con:completeLastOperation>true</con:completeLastOperation><con:restartOnRun>true</con:restartOnRun></con:config></con:testStep><con:testStep type="datasourceloop" name="DataSource Loop" id="c2df2f60-1b2d-45fa-94a0-1e4793878114"><con:settings/><con:config><dataSourceStep>Form_Agg_DS</dataSourceStep><targetStep>TC_GET-FormAggregation_EpKey</targetStep></con:config></con:testStep><con:testStep type="restrequest" name="TC_GET-FormAggregation_EpKey" id="18f661d6-1348-4e54-9623-baf3c0ee8062"><con:settings/><con:config service="http://mavdv-ccpts-03.curaspan.local" resourcePath="/formaggregationservice/services/form/${Form_Agg_DS#Form ID}/episode/${Form_Agg_DS#Episode_Key}" methodName="GET-FormAggregation_EpKey" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="TC_GET-FormAggregation_EpKey" id="936b4c94-951e-4d94-bbc4-56db0ff80672" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting><con:setting id="com.eviware.soapui.impl.support.AbstractHttpRequest@dump-file">C:/Users/Amiya.acharya/Documents/API response/FormAgg_Response/API_response.txt</con:setting><con:setting id="com.eviware.soapui.impl.support.AbstractHttpRequest@max-size">10000000</con:setting></con:settings><con:endpoint>http://mavdv-ccpts-03.curaspan.local</con:endpoint><con:request/><con:originalUri>http://mavdv-ccpts-03.curaspan.local/formaggregationservice/services/</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="dc82af97-b8c8-47c4-8b83-07dfee0283a0" name="Valid HTTP Status Codes"><con:settings/><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" id="786f1f86-9c3c-4248-8078-9f723210f219" name="Contains"><con:configuration><token>${Form_Agg_DS#Form ID}</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="268d383f-4ebf-4997-933e-1bba02795963" name="JsonPath Match"><con:configuration><path>$.id</path><content>${Form_Agg_DS#Form ID}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="346a71e6-fec1-4b11-aa3e-926126cb9977" name="JsonPath Match 2"><con:configuration><path>$.values.id</path><content>${Form_Agg_DS#Episode_Key}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="c013ad57-2b4d-4add-9db3-8653593c82e8" name="Script Assertion"><con:configuration><scriptText>import com.gmongo.GMongoClient
+import com.mongodb.MongoClient
+import com.gmongo.GMongo
+import com.mongodb.DBCursor
+import com.mongodb.MongoCredential
+import com.mongodb.ServerAddress
+import groovy.json.JsonSlurper
+import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.model.iface.*
+import groovy.json.JsonSlurper
+import java.text.SimpleDateFormat 
+import java.util.Date
+import groovy.sql.Sql
+
+def dbUser = context.expand( '${#Project#User}' )
+def dbPassword = context.expand( '${#Project#Password}' )
+def dbServer = context.expand( '${#Project#Server}' )
+def dbDatabase = context.expand( '${#Project#Database}' )
+
+//Connecting to Form Database
+
+def credentials = MongoCredential.createCredential(dbUser, dbDatabase, dbPassword as char[])
+
+def mongoClient =  new MongoClient( new ServerAddress(dbServer), Arrays.asList(credentials) )
+context.gmongo = new GMongo( mongoClient )
+context.mongoDB = context.gmongo.getDB(dbDatabase)
+log.info("Connection Successfull: Form Database")
+
+def dbMongo_id = context.mongoDB.form.find([_id:[$exists:true]]).toArray()
+def id_count = dbMongo_id.size()
+def response = context.expand( '${TC_GET-FormAggregation_EpKey#Response}' ).toString()
+
+
+def json = new JsonSlurper().parseText(response)
+
+//Validating Form Data
+
+for(int i=0;i&lt;5;i++){
+
+	if(dbMongo_id[i]._id==json.id){
+	
+	assert dbMongo_id[i].uri == json.uri	
+	assert dbMongo_id[i].page == json.page
+	}
+	
+}
+//Connecting to PatientEpisode Database
+
+def credentials2 = MongoCredential.createCredential("psuser", "patientstore", dbPassword as char[])
+
+def mongoClient2 =  new MongoClient( new ServerAddress(dbServer), Arrays.asList(credentials2) )
+context.gmongo = new GMongo( mongoClient2 )
+context.mongoDB = context.gmongo.getDB("patientstore")
+
+log.info("Connection Successfull: Patient Episode Database")
+
+  def ep_Key = context.expand('${Form_Agg_DS#Episode_Key}')
+  def userResult = context.mongoDB.patientEpisode.findOne([_id:ep_Key])
+/*
+  String admnDate = json.values.admission_date
+  Date date = Date.parse( 'dd-MM-yyyy', admnDate )                            //Admn Date assertion
+  String newDate = date.format( 'M-d-yyyy' )
+  log.info( newDate)
+    
+    assert  userResult.admissionDetails.admissionDate==125903 */
+
+     def name = json.values.patient_name
+     def db_name = userResult.patientInfo.lastName+" "+userResult.patientInfo.firstName    
+     log.info name
+     log.info db_name
+
+		   assert name.trim() == db_name.trim()
+
+   /*  
+     if(!((name == null || name=="") ||  (db_name == null || db_name==""))){                          //Patient Name Assertion
+     assert name.trim() == db_name.trim()
+     }  */
+
+	log.info("Asserting EP ID")
+	def ep_id = json.values.id							//Patient Episode ID Assertion
+     assert ep_id.trim() ==  userResult._id.trim()
+
+	log.info("Asserting MRN")
+     def mrn = json.values.mrn						//MRN Assertion
+     assert mrn.trim() ==  userResult.patientInfo.mrn.trim()
+     
+	log.info("Asserting SSN")
+     def ssn = json.values.ssn						//SSN Assertion
+     if(ssn!=null){  
+    		 assert ssn.trim() ==  userResult.patientInfo.ssn.trim()
+     }
+	log.info("Asserting PR PHONE")
+	def home_Phone = json.values.x450_patient_home_phone
+		
+	if(home_Phone!=null){                                                          //Primary Phone Assertion
+    		 assert home_Phone.trim() ==  userResult.patientInfo.primaryPhone.trim()
+	}
+
+	
+     log.info("Asserting WRK PHONE")
+	def work_Phone = json.values.x450_patient_work_phone	
+	if(work_Phone!=null){                       							  //Secondary Phone Assertion
+   		  assert work_Phone.trim() ==  userResult.patientInfo.secondaryPhone.trim()
+	}
+	
+	log.info("Asserting HOME ADDR")
+     def addrs1 = json.values.x450_patient_address	
+     if(addrs1!=null){  												//Home address Assertion
+    		 assert addrs1.trim() ==  userResult.patientInfo.homeAddress.address1.trim()
+     }
+
+     log.info("Asserting CITY")
+     def city = json.values.x450_patient_city	
+     if(city!=null){  											//City Assertion
+   		  assert city.trim() ==  userResult.patientInfo.homeAddress.city.trim()
+     }
+
+     
+	log.info("Asserting STATE-ZIP")
+     def sZip = json.values.x450_patient_state_zip						//State Zip Assertion
+     if(sZip!=null){  
+     assert sZip.trim() ==  (userResult.patientInfo.homeAddress.state+" "+userResult.patientInfo.homeAddress.zip).trim()
+     }
+
+	log.info("Assertion successful")</scriptText></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/><con:parameterOrder/></con:restRequest></con:config></con:testStep><con:testStep type="jdbc" name="check_OracleDB" id="eaa4af16-22ed-4a89-a017-dabad14ebfc9"><con:settings/><con:config xsi:type="con:JdbcRequestTestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:dbConnectionName>AIM_DEV</con:dbConnectionName><con:driver>oracle.jdbc.driver.OracleDriver</con:driver><con:connectionString>jdbc:oracle:thin:transition/PASS_VALUE@db-aimdev.curaspan.local:1521:AIMDEV</con:connectionString><con:password>monthrow</con:password><con:query>Select ORGANIZATION.ORGANIZATION_ID, ORGANIZATION.ORGANIZATION_NAME,
+  ORGANIZATION.ADDRESS2, ORGANIZATION.ADDRESS1, ORGANIZATION.STATE_CODE,
+  ORGANIZATION.CITY,ORGANIZATION.ZIP
+From ORGANIZATION
+Where ORGANIZATION.ORGANIZATION_ID = ${Form_Agg_DS#OrgID}</con:query><con:assertion type="GroovyScriptAssertion" id="69be7d18-6fac-44dc-a5cb-78f0964551b7" name="Script Assertion"><con:configuration><scriptText>import com.gmongo.GMongoClient
+import com.mongodb.MongoClient
+import com.gmongo.GMongo
+import com.mongodb.DBCursor
+import com.mongodb.MongoCredential
+import com.mongodb.ServerAddress
+import groovy.json.JsonSlurper
+import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.model.iface.*
+import groovy.json.JsonSlurper
+
+
+def response = context.expand( '${TC_GET-FormAggregation_EpKey#Response}' ).toString()
+
+
+def json = new JsonSlurper().parseText(response)
+
+//Validating Response Data
+
+def json_Add = json.values.hospital_address
+
+def DBresponse = context.expand( '${check_OracleDB#Response}' ).toString()
+def DBjson = new JsonSlurper().parseText(response)
+def DB_Add1 = DBjson.ADDRESS1
+def DB_Add2 = DBjson.ADDRESS2
+
+//def DB_Add1 = context.expand( '${check_OracleDB#ResponseAsXml#//Results[1]/ResultSet[1]/Row[1]/ADDRESS1[1]}' )
+//def DB_Add2 = context.expand( '${check_OracleDB#ResponseAsXml#//Results[1]/ResultSet[1]/Row[1]/ADDRESS1[1]}' )
+def DB_StateCode = context.expand( '${check_OracleDB#ResponseAsXml#//Results[1]/ResultSet[1]/Row[1]/STATE_CODE[1]}' )
+def DB_zip = context.expand( '${check_OracleDB#ResponseAsXml#//Results[1]/ResultSet[1]/Row[1]/ZIP[1]}' )
+def DB_City = context.expand( '${check_OracleDB#ResponseAsXml#//Results[1]/ResultSet[1]/Row[1]/CITY[1]}' )
+
+if(DB_Add1!=null){
+	def DB_Add = DB_Add1+" "+DB_City+" "+DB_StateCode+" "+DB_zip   
+	log.info DB_Add
+	assert json_Add == DB_Add  
+}																							//DB_add2 to be added (Confirm from Dev)
+else if(DB_Add1==null){
+	def DB_Add = DB_City+" "+DB_StateCode+" "+DB_zip     
+	log.info DB_Add
+	assert json_Add == DB_Add
+}
+
+
+
+	log.info("Assertion successful")</scriptText></con:configuration></con:assertion><con:assertion type="XPath Match" id="c09bab95-a443-423e-be23-036ce28501d8" name="XPath Match"><con:configuration><path>//Results[1]/ResultSet[1]/Row[1]/ORGANIZATION_NAME[1]</path><content>${TC_GET-FormAggregation_EpKey#ResponseAsXml#declare namespace ns1='http://mavdv-ccpts-03.curaspan.local/formaggregationservice/services/'; //ns1:Response[1]/ns1:values[1]/ns1:hospital_name[1]}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:properties/></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>703e15e4-6a70-405b-a327-7b7f3c60448c</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>c2df2f60-1b2d-45fa-94a0-1e4793878114</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints></con:testCase>
