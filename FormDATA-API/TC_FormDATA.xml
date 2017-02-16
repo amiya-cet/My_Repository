@@ -14,6 +14,8 @@ def dbPassword = context.expand( '${#Project#Password}' )
 def dbServer = context.expand( '${#Project#Server}' )
 def dbDatabase = context.expand( '${#Project#Database}' )
 
+//MongoDB Connection
+
 def credentials = MongoCredential.createCredential(dbUser, dbDatabase, dbPassword as char[])
 
 def mongoClient =  new MongoClient( new ServerAddress(dbServer), Arrays.asList(credentials) )
@@ -21,11 +23,15 @@ context.gmongo = new GMongo( mongoClient )
 context.mongoDB = context.gmongo.getDB(dbDatabase)
 log.info("Connection Successfull")
 
+//Check Forms Collecton
+
 def dbMongo_id = context.mongoDB.form.find([_id:[$exists:true]]).toArray()
 def id_count = dbMongo_id.size()
 def response = context.expand( '${GET_FormDataService#Response}' ).toString()
 
 def json = new JsonSlurper().parseText(response)
+
+//Asserting document value with JSON Response
 
 for(int i=0;i&lt;5;i++){
 	assert dbMongo_id[i]._id == json[i].id	
