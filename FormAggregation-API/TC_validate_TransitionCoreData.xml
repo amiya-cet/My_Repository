@@ -7,7 +7,8 @@ Where person_contact_method.PERSON_ID = (Select users.PERSON_ID From users
       pcc_user.PC_COORDINATION_ID =
       (Select patient_care_coordination.PC_COORDINATION_ID
       From patient_care_coordination
-      Where patient_care_coordination.PATIENT_EPISODE_DOC_KEY = :ep_key
+      Where patient_care_coordination.PATIENT_EPISODE_DOC_KEY =
+ :ep_key
         And
         patient_care_coordination.SERVICE_APP_ID =
         (Select service_app.SERVICE_APP_ID From service_app
@@ -80,4 +81,4 @@ if(DB_CM_name!=null){
 
 
 
-	log.info("Assertion successful")</scriptText></con:configuration></con:assertion><con:properties><con:property><con:name>ep_key</con:name><con:value>${Form_Agg_DS_2#Episode_Key}</con:value></con:property></con:properties></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase>
+	log.info("Assertion successful")</scriptText></con:configuration></con:assertion><con:properties><con:property><con:name>ep_key</con:name><con:value>${Form_Agg_DS_2#Episode_Key}</con:value></con:property></con:properties></con:config></con:testStep><con:properties/><con:reportParameters/><con:environmentSpec><con:entry environmentId="675979d6-de27-412f-bfe0-0455d3a87e64"><con:authProfile>Inherit From Parent</con:authProfile></con:entry></con:environmentSpec></con:testCase>
