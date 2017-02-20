@@ -217,7 +217,7 @@ log.info("Connection Successfull: Patient Episode Database")
   ORGANIZATION.ADDRESS2, ORGANIZATION.ADDRESS1, ORGANIZATION.STATE_CODE,
   ORGANIZATION.CITY,ORGANIZATION.ZIP
 From ORGANIZATION
-Where ORGANIZATION.ORGANIZATION_ID = ${Form_Agg_DS#OrgID}</con:query><con:assertion type="GroovyScriptAssertion" id="69be7d18-6fac-44dc-a5cb-78f0964551b7" name="Script Assertion"><con:configuration><scriptText>import com.gmongo.GMongoClient
+Where ORGANIZATION.ORGANIZATION_ID = :OrgID</con:query><con:assertion type="GroovyScriptAssertion" id="69be7d18-6fac-44dc-a5cb-78f0964551b7" name="Script Assertion"><con:configuration><scriptText>import com.gmongo.GMongoClient
 import com.mongodb.MongoClient
 import com.gmongo.GMongo
 import com.mongodb.DBCursor
@@ -229,7 +229,7 @@ import com.eviware.soapui.model.iface.*
 import groovy.json.JsonSlurper
 
 
-def response = context.expand( '${TC_GET-FormAggregation_EpKey#Response}' ).toString()
+def response = context.expand( '${generic_FormAggregation_EpKey#Response}' ).toString()
 
 
 def json = new JsonSlurper().parseText(response)
@@ -264,4 +264,4 @@ else if(DB_Add1==null){
 
 
 
-	log.info("Assertion successful")</scriptText></con:configuration></con:assertion><con:assertion type="XPath Match" id="c09bab95-a443-423e-be23-036ce28501d8" name="XPath Match"><con:configuration><path>//Results[1]/ResultSet[1]/Row[1]/ORGANIZATION_NAME[1]</path><content>${TC_GET-FormAggregation_EpKey#ResponseAsXml#declare namespace ns1='http://mavdv-ccpts-03.curaspan.local/formaggregationservice/services/'; //ns1:Response[1]/ns1:values[1]/ns1:hospital_name[1]}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:properties><con:property><con:name>OrgID</con:name></con:property></con:properties></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>703e15e4-6a70-405b-a327-7b7f3c60448c</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>c2df2f60-1b2d-45fa-94a0-1e4793878114</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:environmentSpec><con:entry environmentId="675979d6-de27-412f-bfe0-0455d3a87e64"><con:authProfile>Inherit From Parent</con:authProfile></con:entry></con:environmentSpec></con:testCase>
+	log.info("Assertion successful")</scriptText></con:configuration></con:assertion><con:assertion type="XPath Match" id="c09bab95-a443-423e-be23-036ce28501d8" name="XPath Match"><con:configuration><path>//Results[1]/ResultSet[1]/Row[1]/ORGANIZATION_NAME[1]</path><content>${generic_FormAggregation_EpKey#Response#$.values.hospital_name}</content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:properties><con:property><con:name>OrgID</con:name><con:value>${Form_Agg_DS#OrgID}</con:value></con:property></con:properties></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>703e15e4-6a70-405b-a327-7b7f3c60448c</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>c2df2f60-1b2d-45fa-94a0-1e4793878114</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:environmentSpec><con:entry environmentId="675979d6-de27-412f-bfe0-0455d3a87e64"><con:authProfile>Inherit From Parent</con:authProfile></con:entry></con:environmentSpec></con:testCase>

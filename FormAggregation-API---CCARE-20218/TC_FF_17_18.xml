@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="5bc06ba4-3f79-43b2-a390-0df7571fd8ab" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TC_FF_17_18" searchProperties="true" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="5bc06ba4-3f79-43b2-a390-0df7571fd8abfileName">TC_FF_17_18</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="datasource" name="Form_Agg_DS_3" id="2a8cce49-21c3-4ef1-a5c9-6c23fbc926ca"><con:settings/><con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:dataSource type="Grid"><con:configuration><check><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry></xml-fragment>]]></check><row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">450</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">125917_573a7db4fc1ca2f27967170a</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">125917</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row><row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">450</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">700060121_58985d6ee75b1b707d97a83d</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">700060121</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row></con:configuration></con:dataSource><con:property>Form ID</con:property><con:property>Episode_Key</con:property><con:property>OrgID</con:property><con:completeLastOperation>true</con:completeLastOperation><con:restartOnRun>true</con:restartOnRun></con:config></con:testStep><con:testStep type="datasourceloop" name="DataSource Loop" id="952684d3-a70a-408b-8ca9-64bb6c603886"><con:settings/><con:config><dataSourceStep>Form_Agg_DS_3</dataSourceStep><targetStep>check_OracleDB_Case_Manager_Contact</targetStep></con:config></con:testStep><con:testStep type="jdbc" name="check_OracleDB_Case_Manager_Contact" id="0342c3dc-6bbe-43cc-8c42-3c666aa5017a"><con:settings/><con:config xsi:type="con:JdbcRequestTestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:dbConnectionName>AIM_DEV</con:dbConnectionName><con:driver>oracle.jdbc.driver.OracleDriver</con:driver><con:connectionString>jdbc:oracle:thin:transition/PASS_VALUE@db-aimdev.curaspan.local:1521:AIMDEV</con:connectionString><con:password>monthrow</con:password><con:query>Select person_contact_method.PROTOCOL_VALUE
+From person_contact_method
+Where person_contact_method.PERSON_ID = (Select users.PERSON_ID From users
+  Where users.USER_ID = (Select pcc_user.USER_ID From pcc_user
+    Where
+      pcc_user.PC_COORDINATION_ID =
+      (Select patient_care_coordination.PC_COORDINATION_ID
+      From patient_care_coordination
+      Where patient_care_coordination.PATIENT_EPISODE_DOC_KEY =
+ :ep_key
+        And
+        patient_care_coordination.SERVICE_APP_ID =
+        (Select service_app.SERVICE_APP_ID From service_app
+        Where service_app.SERVICE_APP_NAME = 'DISCHARGE') And
+        pcc_user.IS_OWNER = 'Y'))) And person_contact_method.PROTOCOL_CODE =
+  'WORK_PHONE'
+
+</con:query><con:assertion type="GroovyScriptAssertion" id="69be7d18-6fac-44dc-a5cb-78f0964551b7" name="Script Assertion"><con:configuration><scriptText>
+import com.gmongo.GMongoClient
+import com.mongodb.MongoClient
+import com.gmongo.GMongo
+import com.mongodb.DBCursor
+import com.mongodb.MongoCredential
+import com.mongodb.ServerAddress
+import groovy.json.JsonSlurper
+import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.model.iface.*
+import groovy.json.JsonSlurper
+
+
+log.info("Validating Response Data")
+
+
+def json_case_contact = context.expand( '${#[FormAggregation API - CCARE 20218#TC_FF_12#x450_FormAggregation_EpKey]#Response#$.values.x450_case_manager_phone}' )
+
+
+def DB_case_contact = context.expand( '${check_OracleDB_Case_Manager_Contact#ResponseAsXml#//Results[1]/ResultSet[1]/Row[1]/PROTOCOL_VALUE[1]}' )
+
+
+if(DB_case_contact!=null){
+
+	assert json_case_contact == DB_case_contact 
+}																				
+
+
+
+
+	log.info("Assertion successful")</scriptText></con:configuration></con:assertion><con:properties><con:property><con:name>ep_key</con:name><con:value>${Form_Agg_DS_3#Episode_Key}</con:value></con:property></con:properties></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase>

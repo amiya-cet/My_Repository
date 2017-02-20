@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="0268cd93-4bdf-433f-afa7-fde9325f1587" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TC_FF_15_16" searchProperties="true" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="cb4d3437-13dc-4419-bfa6-b0a7bbc9167bfileName">TC_validate_TransitionCoreData</con:setting><con:setting id="IncludeOverview">true</con:setting><con:setting id="IncludeResults">true</con:setting><con:setting id="FlowLayout">false</con:setting><con:setting id="ErrorDetails">true</con:setting><con:setting id="IncludeCoverage">true</con:setting><con:setting id="GeneratableJUnitReport@Style">Multiple Pages</con:setting><con:setting id="GeneratableJUnitReport@Folder">C:\Users\Amiya.acharya\HTML Reports</con:setting><con:setting id="0268cd93-4bdf-433f-afa7-fde9325f1587fileName">TC_FF_15_16</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="datasource" name="Form_Agg_DS_2" id="af221657-d069-4dcd-aef7-8863594bd29a"><con:settings/><con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:dataSource type="Grid"><con:configuration><check><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry></xml-fragment>]]></check><row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">450</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">125917_573a7db4fc1ca2f27967170a</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">125917</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row><row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">450</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">700060121_58985d6ee75b1b707d97a83d</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">700060121</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row></con:configuration></con:dataSource><con:property>Form ID</con:property><con:property>Episode_Key</con:property><con:property>OrgID</con:property><con:completeLastOperation>true</con:completeLastOperation><con:restartOnRun>true</con:restartOnRun></con:config></con:testStep><con:testStep type="datasourceloop" name="DataSource Loop" id="1ce57bcb-5ad8-4327-84f1-7d1b63fe9631"><con:settings/><con:config><dataSourceStep>Form_Agg_DS_2</dataSourceStep><targetStep>Copy of check_OracleDB_Case_Manager_Name</targetStep></con:config></con:testStep><con:testStep type="jdbc" name="check_OracleDB_Case_Manager_Name" id="f0c3844d-d3bf-4695-a350-a9fca20a87b0"><con:settings/><con:config xsi:type="con:JdbcRequestTestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:dbConnectionName>AIM_DEV</con:dbConnectionName><con:driver>oracle.jdbc.driver.OracleDriver</con:driver><con:connectionString>jdbc:oracle:thin:transition/PASS_VALUE@db-aimdev.curaspan.local:1521:AIMDEV</con:connectionString><con:password>monthrow</con:password><con:query>select first_name,last_name from users where user_id = (select USER_ID from pcc_user where pc_coordination_id =(select PC_COORDINATION_ID from patient_care_coordination where patient_episode_doc_key= :ep_key and service_app_id = (select SERVICE_APP_ID from service_app where service_app_name = 'DISCHARGE') and is_owner = 'Y'))</con:query><con:assertion type="GroovyScriptAssertion" id="69be7d18-6fac-44dc-a5cb-78f0964551b7" name="Script Assertion"><con:configuration><scriptText>
+import com.gmongo.GMongoClient
+import com.mongodb.MongoClient
+import com.gmongo.GMongo
+import com.mongodb.DBCursor
+import com.mongodb.MongoCredential
+import com.mongodb.ServerAddress
+import groovy.json.JsonSlurper
+import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.model.iface.*
+import groovy.json.JsonSlurper
+
+
+log.info("Validating Response Data")
+
+
+def json_Case_Mgr_Name = context.expand( '${#[FormAggregation API - CCARE 20218#TC_FF_12#x450_FormAggregation_EpKey]#Response#$.values.x450_case_manager}' )
+
+log.info(json_Case_Mgr_Name)
+
+//def DBresponse = context.expand( '${check_OracleDB_Case_Manager_Contact#Response}' ).toString()
+
+def DB_Case_Mgr_FN = context.expand( '${check_OracleDB_Case_Manager_Name#ResponseAsXml#//Results[1]/ResultSet[1]/Row[1]/FIRST_NAME[1]}' )
+def DB_Case_Mgr_LN = context.expand( '${check_OracleDB_Case_Manager_Name#ResponseAsXml#//Results[1]/ResultSet[1]/Row[1]/LAST_NAME[1]}' )
+
+def DB_CM_name = DB_Case_Mgr_FN+" "+DB_Case_Mgr_LN
+
+if(DB_CM_name!=null){
+
+	assert DB_CM_name == json_Case_Mgr_Name
+	log.info "CASE MANAGER NAME ASSERTED"
+}																				
+
+
+
+
+	log.info("Assertion successful")</scriptText></con:configuration></con:assertion><con:properties><con:property><con:name>ep_key</con:name><con:value>${Form_Agg_DS_2#Episode_Key}</con:value></con:property></con:properties></con:config></con:testStep><con:properties/><con:reportParameters/><con:environmentSpec><con:entry environmentId="675979d6-de27-412f-bfe0-0455d3a87e64"><con:authProfile>Inherit From Parent</con:authProfile></con:entry></con:environmentSpec></con:testCase>

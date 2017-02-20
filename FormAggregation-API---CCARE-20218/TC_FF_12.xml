@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="cdf9a403-3842-4035-a978-c99719afbae1" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TC_FF_12" searchProperties="true" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="a4f20059-c317-45f3-b3ae-cdd2b3d404c9fileName">TC_FormAggregation</con:setting><con:setting id="cdf9a403-3842-4035-a978-c99719afbae1fileName">TC_FF_12</con:setting></con:settings><con:savedRecentRuns>1</con:savedRecentRuns><con:testStep type="datasource" name="Form_Agg_DS" id="79ed807a-09de-4244-b53c-4b0c0ad5776c"><con:settings/><con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:dataSource type="Grid"><con:configuration><check><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry></xml-fragment>]]></check><row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">450</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">125917_573a7db4fc1ca2f27967170a</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">125917</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row><row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">450</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">700060121_58985d6ee75b1b707d97a83d</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">700060121</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row><row><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config"/><con:entry xmlns:con="http://eviware.com/soapui/config">125903_57a26566fc1c59cbba88659a</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">125903</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config"/></xml-fragment>]]></row></con:configuration></con:dataSource><con:property>Form ID</con:property><con:property>Episode_Key</con:property><con:property>OrgID</con:property><con:completeLastOperation>true</con:completeLastOperation><con:restartOnRun>true</con:restartOnRun></con:config></con:testStep><con:testStep type="datasourceloop" name="DataSource Loop" id="674e9dda-56c7-4b00-82d8-3012d777c62a"><con:settings/><con:config><dataSourceStep>Form_Agg_DS</dataSourceStep><targetStep>TC_GET-FormAggregation_EpKey</targetStep></con:config></con:testStep><con:testStep type="restrequest" name="x450_FormAggregation_EpKey" id="89c037b0-1219-4b53-b4af-513a2de26075"><con:settings/><con:config service="http://mavdv-ccpts-03.curaspan.local" resourcePath="/formaggregationservice/services/form/${Form_Agg_DS#Form ID}/episode/${Form_Agg_DS#Episode_Key}" methodName="GET-FormAggregation_EpKey" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="x450_FormAggregation_EpKey" id="936b4c94-951e-4d94-bbc4-56db0ff80672" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting><con:setting id="com.eviware.soapui.impl.support.AbstractHttpRequest@dump-file">C:/Users/Amiya.acharya/Documents/API response/FormAgg_Response/API_response.txt</con:setting><con:setting id="com.eviware.soapui.impl.support.AbstractHttpRequest@max-size">10000000</con:setting></con:settings><con:endpoint>http://mavdv-ccpts-03.curaspan.local:8081</con:endpoint><con:request/><con:originalUri>http://mavdv-ccpts-03.curaspan.local/formaggregationservice/services/</con:originalUri><con:assertion type="Valid HTTP Status Codes" id="dc82af97-b8c8-47c4-8b83-07dfee0283a0" name="Valid HTTP Status Codes"><con:settings/><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="Simple Contains" id="786f1f86-9c3c-4248-8078-9f723210f219" name="Contains"><con:configuration><token>${Form_Agg_DS#Form ID}</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="268d383f-4ebf-4997-933e-1bba02795963" name="JsonPath Match"><con:configuration><path>$.id</path><content>${Form_Agg_DS#Form ID}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="JsonPath Match" id="346a71e6-fec1-4b11-aa3e-926126cb9977" name="JsonPath Match 2"><con:configuration><path>$.values.id</path><content>${Form_Agg_DS#Episode_Key}</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="GroovyScriptAssertion" id="c013ad57-2b4d-4add-9db3-8653593c82e8" name="Script Assertion" disabled="true"><con:configuration><scriptText>import com.gmongo.GMongoClient
+import com.mongodb.MongoClient
+import com.gmongo.GMongo
+import com.mongodb.DBCursor
+import com.mongodb.MongoCredential
+import com.mongodb.ServerAddress
+import groovy.json.JsonSlurper
+import com.eviware.soapui.support.XmlHolder
+import com.eviware.soapui.model.iface.*
+import groovy.json.JsonSlurper
+import java.text.SimpleDateFormat 
+import java.util.Date
+import groovy.sql.Sql
+
+def dbUser = context.expand( '${#Project#User}' )
+def dbPassword = context.expand( '${#Project#Password}' )
+def dbServer = context.expand( '${#Project#Server}' )
+def dbDatabase = context.expand( '${#Project#Database}' )
+
+//Connecting to Form Database
+
+def credentials = MongoCredential.createCredential(dbUser, dbDatabase, dbPassword as char[])
+
+def mongoClient =  new MongoClient( new ServerAddress(dbServer), Arrays.asList(credentials) )
+context.gmongo = new GMongo( mongoClient )
+context.mongoDB = context.gmongo.getDB(dbDatabase)
+log.info("Connection Successfull: Form Database")
+
+def dbMongo_id = context.mongoDB.form.find([_id:[$exists:true]]).toArray()
+def id_count = dbMongo_id.size()
+def response = context.expand( '${x450_FormAggregation_EpKey#Response}' ).toString()
+
+
+def json = new JsonSlurper().parseText(response)
+
+//Validating Form Data
+
+for(int i=0;i&lt;5;i++){
+
+	if(dbMongo_id[i]._id==json.id){
+	
+		assert dbMongo_id[i].uri == json.uri	
+		assert dbMongo_id[i].page == json.page
+	
+	}
+	
+}
+//Connecting to PatientEpisode Database
+
+def credentials2 = MongoCredential.createCredential("psuser", "patientstore", dbPassword as char[])
+
+def mongoClient2 =  new MongoClient( new ServerAddress(dbServer), Arrays.asList(credentials2) )
+context.gmongo = new GMongo( mongoClient2 )
+context.mongoDB = context.gmongo.getDB("patientstore")
+
+log.info("Connection Successfull: Patient Episode Database")
+
+  def ep_Key = context.expand('${Form_Agg_DS#Episode_Key}')
+  def userResult = context.mongoDB.patientEpisode.findOne([_id:ep_Key])
+/*
+  String admnDate = json.values.admission_date
+  Date date = Date.parse( 'dd-MM-yyyy', admnDate )                            //Admn Date assertion
+  String newDate = date.format( 'M-d-yyyy' )
+  log.info( newDate)
+    
+    assert  userResult.admissionDetails.admissionDate==125903 */
+
+     def name = json.values.patient_name
+     def db_name = userResult.patientInfo.lastName+" "+userResult.patientInfo.firstName    
+    
+		   assert name.trim() == db_name.trim()
+
+   /*  
+     if(!((name == null || name=="") ||  (db_name == null || db_name==""))){                          //Patient Name Assertion
+     assert name.trim() == db_name.trim()
+     }  */
+
+	log.info("Asserting EP ID")
+	def ep_id = json.values.id		
+									//Patient Episode ID Assertion
+     assert ep_id.trim() ==  userResult._id.trim()
+     
+
+	log.info("Asserting MRN")
+     def mrn = json.values.mrn						//MRN Assertion
+     assert mrn.trim() ==  userResult.patientInfo.mrn.trim()
+     
+	log.info("Asserting SSN")
+     def ssn = json.values.ssn						//SSN Assertion
+     if(ssn!=null){  
+    		 assert ssn.trim() ==  userResult.patientInfo.ssn.trim()
+     }
+	log.info("Asserting PR PHONE")
+	def home_Phone = json.values.x450_patient_home_phone
+		log.info home_Phone
+		log.info userResult.patientInfo.primaryPhone
+	if(home_Phone!=null){                                                          //Primary Phone Assertion
+    		 assert home_Phone.trim() ==  userResult.patientInfo.primaryPhone.trim()
+	}
+
+	
+     log.info("Asserting WRK PHONE")
+	def work_Phone = json.values.x450_patient_work_phone	
+	if(work_Phone!=null){                       							  //Secondary Phone Assertion
+   		  assert work_Phone.trim() ==  userResult.patientInfo.secondaryPhone.trim()
+	}
+	
+	log.info("Asserting HOME ADDR")
+     def addrs1 = json.values.x450_patient_address	
+     if(addrs1!=null){  												//Home address Assertion
+    		 assert addrs1.trim() ==  userResult.patientInfo.homeAddress.address1.trim()
+     }
+
+     log.info("Asserting CITY")
+     def city = json.values.x450_patient_city	
+     if(city!=null){  											//City Assertion
+   		  assert city.trim() ==  userResult.patientInfo.homeAddress.city.trim()
+     }
+
+     
+	log.info("Asserting STATE-ZIP")
+     def sZip = json.values.x450_patient_state_zip						//State Zip Assertion
+     if(sZip!=null){  
+     assert sZip.trim() ==  (userResult.patientInfo.homeAddress.state+" "+userResult.patientInfo.homeAddress.zip).trim()
+     }
+
+     log.info("Asserting Attending Physician")
+     def json_att_Phy = json.values.x450_attending_physician						//Attending Physician Assertion
+     if(json_att_Phy!=null){  
+     	def att_phy_ln = userResult.admissionDetails.attendingDoctorLastName
+     	def att_phy_fn = userResult.admissionDetails.attendingDoctorFirstName
+     	def db_Att_Phy = att_phy_ln+" "+att_phy_fn
+     	assert db_Att_Phy.trim() == json_att_Phy
+     
+     }
+
+ 	log.info("Asserting Bed no")
+     def json_bedNo = json.values.x450_bed						//Bed Assertion
+     if(json_bedNo!=null){  
+     	def db_Bed = userResult.admissionDetails.bed
+     	
+     	assert json_bedNo.trim() == db_Bed
+     
+     }
+
+	log.info("Asserting marital status")
+     def json_marital_status = json.values.x450_marital_status						//Marital status Assertion
+     if(json_marital_status!=null){  
+     	def db_marital_status = userResult.patientInfo.maritalStatus
+     	
+     	assert json_marital_status.trim() == db_marital_status
+     
+     }
+
+     log.info("Asserting gender")
+     def json_gender = json.values.gender					//Gender Assertion
+     if(json_gender!=null){  
+     	
+     	def db_gender = userResult.patientInfo.gender
+     	assert json_gender.trim() == db_gender
+     	    
+     }
+
+
+     log.info("Asserting Primary diagnosis")
+     def json_primary_diagnosis = json.values.x450_primary_diagnosis						//Primary diagnosis Assertion
+     if(json_primary_diagnosis!=null){  
+     	def db_primary_diagnosis = userResult.diagnosis[0].description
+     	
+     	assert json_primary_diagnosis.trim() == db_primary_diagnosis
+     }
+
+      log.info("Asserting Primary Insurance")
+     def json_primary_ins = json.values.x450_primary_insurance				//Primary Insurance Insurance
+     if(json_primary_ins!=null){  
+     	def db_primary_ins = userResult.payers[0].name
+     	
+     	assert json_primary_ins.trim() == db_primary_ins
+     }
+
+     log.info("Asserting Religion")
+     def json_religion = json.values.x450_religion			//Religion Insurance
+     if(json_religion!=null){  
+     	def db_religion = userResult.patientInfo.religion
+     	
+     	assert json_religion.trim() == db_religion
+     	log.info "Religion asserted"
+     }
+
+     log.info("Asserting Room")
+     def json_Room = json.values.x450_room						//Room Assertion
+     if(json_Room!=null){  
+     	def db_Room = userResult.admissionDetails.room
+     	
+     	assert json_Room.trim() == db_Room
+     
+     }
+
+     log.info("Asserting PCP")
+     def json_pcp = json.values.x450_pcp						//PCP Assertion
+     if(json_pcp!=null){  
+     	def att_pcp_ln = userResult.careTeam[0].lastName
+     	def att_pcp_fn = userResult.careTeam[0].firstName
+     	def db_pcp = att_pcp_fn+" "+att_pcp_ln
+     	assert db_pcp.trim() == json_pcp.trim()
+     
+     }
+
+	 log.info("Asserting Secondary diagnosis")
+     def json_secondary_diagnosis = json.values.x450_secondary_diagnosis						//Secondary diagnosis Assertion
+     if(json_secondary_diagnosis!=null){  
+     	def db_secondary_diagnosis = userResult.diagnosis[1].description
+     	
+     	assert json_secondary_diagnosis.trim() == db_secondary_diagnosis
+     
+     }
+     
+     
+	log.info("Assertion successful")</scriptText></con:configuration></con:assertion><con:assertion type="Simple Contains" id="b1f8ae7b-f9fe-48d1-87ad-dc2bd2acc9cb" name="Contains 2"><con:configuration><token>"x450_case_contact_date"</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="5c7fa878-8851-4ba9-ab08-6b94cc45d8b6" name="Contains 3"><con:configuration><token>"x450_case_manager"</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:assertion type="Simple Contains" id="aa915093-31d9-4549-beb1-12d0e41f4a88" name="Contains 4"><con:configuration><token>"x450_case_manager_phone"</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:parameters/><con:parameterOrder/><con:environmentSpec><con:entry environmentId="67363e6a-28ac-47e0-bc00-0e997ed66219"><con:authProfile>No Authorization</con:authProfile></con:entry><con:entry environmentId="675979d6-de27-412f-bfe0-0455d3a87e64"><con:authProfile>Inherit From Parent</con:authProfile></con:entry></con:environmentSpec></con:restRequest></con:config></con:testStep><con:properties/><con:reportParameters/><con:breakPoints><con:testStepId>703e15e4-6a70-405b-a327-7b7f3c60448c</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:breakPoints><con:testStepId>c2df2f60-1b2d-45fa-94a0-1e4793878114</con:testStepId><con:status>NONE</con:status><con:properties/></con:breakPoints><con:environmentSpec><con:entry environmentId="675979d6-de27-412f-bfe0-0455d3a87e64"><con:authProfile>Inherit From Parent</con:authProfile></con:entry></con:environmentSpec></con:testCase>
